@@ -84,8 +84,27 @@ claude --channels plugin:telegram@claude-plugins-official
 - `/telegram:access policy allowlist` — Only paired users can send messages
 - `/telegram:access list` — Show approved senders
 
+## Permissions
+
+`.claude/settings.json`에 정의된 permission 정책:
+
+### 자동 허용 (permission 요청 없음)
+- `scripts/garmin_sync.py`, `scripts/garmin_auth.py` 실행
+- `pip install -r requirements.txt`
+- `data/` 하위 파일 읽기/쓰기/수정
+- 파일 검색 (Glob, Grep, Read)
+
+### 수동 승인 필요
+- `scripts/*.py` 소스 코드 수정
+- `data/` 외부 파일 생성/수정
+- 시스템 명령어 실행
+- 패키지 추가 설치
+
+> 일상적인 데이터 동기화, 분석, 사용자 질의 응답은 중단 없이 자동 처리된다.
+> 코드 변경이 필요한 경우에만 터미널에서 permission을 요청한다.
+
 ## Setup
 
 1. `cp scripts/.env.example scripts/.env` and fill in Garmin credentials
 2. `pip install -r requirements.txt`
-3. Run: `python scripts/garmin_sync.py` (daily) or `python scripts/garmin_sync.py --week` (weekly)
+3. Run: `claude --channels plugin:telegram@claude-plugins-official`

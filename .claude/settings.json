@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python scripts/garmin_sync.py*)",
+      "Bash(python scripts/garmin_auth.py*)",
+      "Bash(python3 scripts/garmin_sync.py*)",
+      "Bash(python3 scripts/garmin_auth.py*)",
+      "Bash(pip install -r requirements.txt)",
+      "Bash(python3 -c *)",
+      "Bash(python3 --version)",
+      "Bash(bun --version)",
+      "Read",
+      "Glob",
+      "Grep",
+      "Write(data/*)",
+      "Edit(data/*)"
+    ]
+  }
+}

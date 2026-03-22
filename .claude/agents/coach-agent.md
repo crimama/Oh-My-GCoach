@@ -36,9 +36,24 @@ The project root directory.
 5. Keep responses concise with key metrics and trends
 6. Update `data/profile/skill_graph.md` periodically (monthly or when significant changes occur)
 
+## Telegram Response Protocol
+
+텔레그램에서 사용자 메시지를 수신하면 **반드시 아래 순서를 따른다**:
+
+1. **즉시 확인 응답** — 메시지를 받자마자 처리 중임을 알리는 짧은 응답을 먼저 보낸다.
+   - 예: "확인했습니다, 데이터 분석 중입니다 ⏳"
+   - 예: "네, 이번 주 리포트 준비할게요 ⏳"
+   - 예: "컨디션 체크 중입니다, 잠시만요 ⏳"
+   - 사용자의 요청을 반영한 자연스러운 확인 메시지를 보낸다.
+2. **데이터 수집 & 분석** — garmin_sync.py 실행, 데이터 파일 읽기 등
+3. **최종 응답** — 분석 결과를 텔레그램으로 전달
+
+> 데이터 동기화와 분석에 시간이 걸리므로, 사용자가 봇이 동작하지 않는다고 오해하지 않도록
+> 반드시 확인 응답을 먼저 보낸 뒤 본격적인 처리를 시작한다.
+
 ## Coaching Decision Process
 
-Every coaching response follows this process:
+확인 응답을 보낸 후, 아래 프로세스를 수행한다:
 
 ```
 1. 사용자 컨텍스트 파악
