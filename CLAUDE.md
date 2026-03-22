@@ -30,11 +30,13 @@ Telegram (deliver to user)
 
 ```
 data/
-├── profile/    # Runner profile & skill graph (baseline analysis)
-├── training/   # Weekly reports (YYYY-WNN-weekly-report.md)
-├── health/     # Monthly recovery metrics (YYYY-MM-recovery.md)
-├── races/      # Race records and analysis
-└── plans/      # Training plans
+├── index.md       # Data file index — read this first
+├── knowledge/     # Running & health knowledge base (scientific principles, not rules)
+├── profile/       # Runner profile & skill graph (baseline analysis)
+├── training/      # Weekly reports (YYYY-WNN-weekly-report.md)
+├── health/        # Monthly recovery metrics (YYYY-MM-recovery.md)
+├── races/         # Race records and analysis
+└── plans/         # Training plans
 ```
 
 ## Conventions
@@ -45,12 +47,15 @@ data/
 - Weight: kg
 - Time: `HH:MM:SS`
 
-## Coaching Rules
+## Coaching Ground Rules
 
-1. **80/20 Rule** — Easy (Z1+Z2) should be >= 80% of training time
-2. **10% Rule** — Weekly volume increase must not exceed 10%
-3. **Recovery First** — Flag sleep < 7.5h, low HRV, high stress before hard sessions
-4. **Data-Driven** — Every insight backed by Garmin data
+These are immutable, Garmin-data-based fundamentals. Coaching *strategy* is dynamic — see `data/knowledge/`.
+
+1. **Data-Driven** — Every insight must be backed by Garmin data, never assumptions
+2. **Profile-Aware** — Always consider user's goals, races, injury history (`data/profile/runner_profile.md`)
+3. **Baseline-Referenced** — Compare against skill graph baseline (`data/profile/skill_graph.md`)
+4. **Knowledge-Informed** — Reference `data/knowledge/` for scientific principles, adapt to user's current phase and state
+5. **No Hardcoded Thresholds** — Thresholds (sleep, volume, intensity ratio) come from knowledge base + individual data, not fixed numbers
 
 ## Telegram Integration
 

@@ -10,6 +10,17 @@
 | `profile/runner_profile.md` | 사용자 목표, 대회 일정, 부상 이력, 훈련 환경 | 조언/계획 수립 전 항상 |
 | `profile/skill_graph.md` | 1년치 데이터 기반 실력 분석 (볼륨/페이스/심박/강점·약점) | 계획 수립, 진행 상황 평가 시 |
 
+## 지식 베이스 (Knowledge Base)
+
+| 파일 | 내용 | 참조 시점 |
+|------|------|----------|
+| `knowledge/training_principles.md` | 주기화, 볼륨 관리, 강도 분배, 핵심 훈련 유형, 테이퍼링 | 훈련 계획 수립, 볼륨/강도 판단 시 |
+| `knowledge/recovery_health.md` | 수면, HRV, RHR 해석, 스트레스, 영양, 부상 예방 | 회복 상태 평가, 컨디션 체크 시 |
+| `knowledge/race_strategy.md` | 종목별 페이스 전략, 대회 준비, 보급, 기록 분석 | 대회 관련 조언 시 |
+
+> 지식 베이스는 과학적 원칙과 가이드라인 범위를 제공한다.
+> 코칭 판단은 이 범위 내에서 사용자의 개인 데이터(profile + health + training)에 맞춰 동적으로 이루어진다.
+
 ## 훈련 데이터
 
 | 파일 패턴 | 용도 | 예시 |
@@ -37,10 +48,11 @@
 ## 빠른 접근 가이드
 
 ```
-오늘 컨디션 체크     → health/YYYY-MM-recovery.md (해당 월)
-이번 주 훈련 분석    → training/YYYY-WNN-weekly-report.md (해당 주)
+오늘 컨디션 체크     → health/YYYY-MM-recovery.md + knowledge/recovery_health.md
+이번 주 훈련 분석    → training/YYYY-WNN-weekly-report.md + knowledge/training_principles.md
 사용자 목표 확인     → profile/runner_profile.md
 실력 기준선 확인     → profile/skill_graph.md
-대회 준비 상황       → profile/runner_profile.md (예정 대회) + plans/
-지난 대회 리뷰       → races/
+훈련 계획 수립       → profile/ + knowledge/training_principles.md + plans/
+대회 준비 상황       → profile/runner_profile.md + knowledge/race_strategy.md + plans/
+지난 대회 리뷰       → races/ + knowledge/race_strategy.md
 ```
