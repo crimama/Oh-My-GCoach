@@ -31,4 +31,7 @@ data/training/*
 data/health/*
 data/races/*
 data/plans/*
+data/profile/runner_profile.md
+data/profile/skill_graph.md
 !data/**/.gitkeep
+!data/profile/*.example.md

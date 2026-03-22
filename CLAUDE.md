@@ -30,6 +30,7 @@ Telegram (deliver to user)
 
 ```
 data/
+├── profile/    # Runner profile & skill graph (baseline analysis)
 ├── training/   # Weekly reports (YYYY-WNN-weekly-report.md)
 ├── health/     # Monthly recovery metrics (YYYY-MM-recovery.md)
 ├── races/      # Race records and analysis
