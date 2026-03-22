@@ -50,7 +50,10 @@ mcp__plugin_telegram_telegram__reply
 
 - [ ] **Python 3.8+** 설치됨 (`python3 --version`으로 확인)
 - [ ] **Garmin Connect 계정** — Garmin 워치와 페어링된 계정, 이메일/비밀번호 확인
-- [ ] **Claude Code 설치됨** — [설치 가이드](https://docs.anthropic.com/en/docs/claude-code/overview) (claude.ai 계정으로 로그인)
+- [ ] **Claude Code 최신 버전** — [설치 가이드](https://docs.anthropic.com/en/docs/claude-code/overview) (claude.ai 계정으로 로그인)
+  - 설치: `npm install -g @anthropic-ai/claude-code`
+  - 업데이트: `npm update -g @anthropic-ai/claude-code`
+  - `--channels` 기능은 **v2.1.80+** 이상 필요
 - [ ] **Bun 설치됨** — Telegram 플러그인 실행에 필요 ([설치](https://bun.sh))
 - [ ] **Telegram Bot 토큰** — 아래 방법으로 생성
 
