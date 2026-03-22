@@ -84,6 +84,15 @@ claude --channels plugin:telegram@claude-plugins-official
 - `/telegram:access policy allowlist` — Only paired users can send messages
 - `/telegram:access list` — Show approved senders
 
+## Skills
+
+| Skill | 명령어 | 용도 |
+|-------|--------|------|
+| `daily-sync` | `/daily-sync` | 오늘 데이터 동기화 + 컨디션 체크 + 훈련 추천 → 텔레그램 전달 |
+| `weekly-report` | `/weekly-report` | 주간 리포트 생성 (볼륨, 존 분배, 회복, 다음 주 방향) → 텔레그램 전달 |
+| `update-skill-graph` | `/update-skill-graph` | 스킬 그래프 업데이트 (월 1회 또는 유의미한 변화 시) |
+| `race-prep` | `/race-prep [대회명]` | 대회 준비 전략 (테이퍼링, 페이스, 보급, D-day 루틴) |
+
 ## Permissions
 
 `.claude/settings.json`에 정의된 permission 정책:
