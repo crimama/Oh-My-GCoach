@@ -92,15 +92,20 @@ claude --channels plugin:telegram@claude-plugins-official
 
 이 명령으로 Claude Code가 텔레그램 채널에 연결되어 **봇에게 보내는 메시지를 실시간으로 수신**하고 코칭을 제공합니다.
 
+> **초기 설정 주의사항**: 텔레그램 연결 직후 첫 메시지를 보내면 Claude Code가 터미널에서
+> **permission 승인을 요청**할 수 있습니다 (파일 접근, 스크립트 실행 등).
+> 이때 터미널을 확인하고 승인해주어야 봇이 정상 응답합니다.
+> 첫 승인 이후에는 동일한 작업에 대해 다시 묻지 않습니다.
+
 #### 항상 켜두기 (백그라운드 실행)
 
-코칭 봇을 상시 실행하려면 tmux 또는 nohup을 사용합니다:
+코칭 봇을 상시 실행하려면 tmux를 사용합니다:
 
 ```bash
 # tmux 사용
 tmux new-session -d -s gcoach "cd Oh-My-GCoach && claude --channels plugin:telegram@claude-plugins-official"
 
-# 세션 확인
+# 세션 확인 (permission 승인이 필요할 때도 여기서 확인)
 tmux attach -t gcoach
 ```
 
