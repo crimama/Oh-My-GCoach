@@ -163,8 +163,9 @@ def get_client() -> GarminClient:
             client = GarminClient(garth)
             client.get_devices()  # connection test
             return client
-        except Exception:
-            print("Saved token expired. Re-authenticating...")
+        except (requests.exceptions.HTTPError, requests.exceptions.ConnectionError) as e:
+            print(f"Saved token invalid or network error: {e}")
+            print("Re-authenticating...")
 
     # 2) New login
     email = os.environ.get("GARMIN_EMAIL")

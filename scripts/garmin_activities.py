@@ -6,14 +6,15 @@ Collects activity records, HR zone distribution, weekly volume as markdown.
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
 
-# Garmin Forerunner 965 HR zone boundaries (user-configured)
-# Z1: 96-114, Z2: 115-133, Z3: 134-154, Z4: 155-171, Z5: 172+
-HR_ZONES = {
-    "Z1 (Recovery)": (0, 115),
-    "Z2 (Easy)": (115, 134),
-    "Z3 (Tempo)": (134, 155),
-    "Z4 (Threshold)": (155, 172),
-    "Z5 (VO2max)": (172, 999),
+# Default HR zone boundaries (fallback when API zones unavailable).
+# These are generic defaults — actual zones are fetched from Garmin API per activity.
+# If you want to customize, set based on your max HR or lactate threshold.
+DEFAULT_HR_ZONES = {
+    "Z1 (Recovery)": (0, 120),
+    "Z2 (Easy)": (120, 140),
+    "Z3 (Tempo)": (140, 160),
+    "Z4 (Threshold)": (160, 175),
+    "Z5 (VO2max)": (175, 999),
 }
 
 
@@ -69,7 +70,7 @@ def classify_hr_zone(avg_hr: Optional[float]) -> str:
     """Classify HR zone by average heart rate."""
     if not avg_hr:
         return "N/A"
-    for zone_name, (low, high) in HR_ZONES.items():
+    for zone_name, (low, high) in DEFAULT_HR_ZONES.items():
         if low <= avg_hr < high:
             return zone_name
     return "N/A"
