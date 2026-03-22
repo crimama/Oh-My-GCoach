@@ -1,0 +1,34 @@
+# Credentials
+scripts/.env
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+
+# Garmin tokens
+.garminconnect/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (generated, not tracked — keep .gitkeep)
+data/training/*
+data/health/*
+data/races/*
+data/plans/*
+!data/**/.gitkeep
