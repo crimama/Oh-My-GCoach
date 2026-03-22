@@ -107,7 +107,7 @@ SETUP.md를 따라 이 프로젝트를 설치해줘.
 
 | 증상 | 해결 방법 |
 |------|----------|
-| `ModuleNotFoundError` | `.venv` 활성화 후 `pip install -r requirements.txt` |
+| `ModuleNotFoundError` | `pip install -r requirements.txt` 재실행 |
 | Garmin 로그인 실패 | `~/.garminconnect/` 삭제 후 재시도. `scripts/.env` 확인 |
 | 활동이 안 보임 | 오늘 러닝이 없으면 정상. `--date`로 과거 날짜 조회 |
 | 텔레그램 봇 무응답 | 봇 토큰 확인. `/telegram:configure` 재실행 |
@@ -130,19 +130,10 @@ python3 --version
 - **Pass**: 3.8 이상
 - **Fail**: OS에 맞는 설치 명령 안내
   - macOS: `brew install python3`
-  - Ubuntu/Debian: `sudo apt install python3 python3-venv python3-pip`
+  - Ubuntu/Debian: `sudo apt install python3 python3-pip`
   - Windows: https://www.python.org/downloads/
 
-### Step 2: 가상환경 생성
-
-`.venv/`가 없으면:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate   # Linux/macOS
-```
-
-### Step 3: 의존성 설치
+### Step 2: 의존성 설치
 
 ```bash
 pip install -r requirements.txt
@@ -153,7 +144,7 @@ pip install -r requirements.txt
 python3 -c "import garminconnect; import garth; import dotenv; import requests; print('All dependencies OK')"
 ```
 
-### Step 4: Garmin 자격 증명
+### Step 3: Garmin 자격 증명
 
 `scripts/.env`가 없으면:
 ```bash
@@ -170,7 +161,7 @@ GARMIN_PASSWORD=<사용자 비밀번호>
 
 > `scripts/.env`는 `.gitignore`에 포함되어 있으므로 git에 올라가지 않음을 안내한다.
 
-### Step 5: Garmin 연결 테스트
+### Step 4: Garmin 연결 테스트
 
 ```bash
 python scripts/garmin_auth.py
@@ -180,14 +171,14 @@ python scripts/garmin_auth.py
 - **Fail (인증)**: 이메일/비밀번호 재확인 요청
 - **Fail (MFA/CAPTCHA)**: https://connect.garmin.com 에서 브라우저 로그인 후 재시도 안내
 
-### Step 6: 첫 데이터 동기화
+### Step 5: 첫 데이터 동기화
 
 ```bash
 python scripts/garmin_sync.py
 ```
 
 - **Pass**: 러닝 활동 또는 "No running activities" + 건강 지표 출력
-- **Fail (토큰 만료)**: `~/.garminconnect/` 삭제 후 Step 5 재실행
+- **Fail (토큰 만료)**: `~/.garminconnect/` 삭제 후 Step 4 재실행
 
 주간 리포트도 생성:
 ```bash
@@ -196,7 +187,7 @@ python scripts/garmin_sync.py --week
 
 `data/health/` 또는 `data/training/`에 파일이 생성되었는지 확인.
 
-### Step 7: 텔레그램 설정
+### Step 6: 텔레그램 설정
 
 `[ASK USER]` 텔레그램 연동을 원하는지 확인.
 
@@ -208,7 +199,7 @@ python scripts/garmin_sync.py --week
 4. `/telegram:access` 실행하여 페어링 승인.
 5. `mcp__plugin_telegram_telegram__reply`로 테스트 메시지 전송.
 
-### Step 8: 러너 프로필 수집
+### Step 7: 러너 프로필 수집
 
 `data/profile/runner_profile.example.md`를 템플릿으로 참조하여, 사용자와 대화를 통해 프로필을 수집한다.
 
@@ -224,11 +215,11 @@ python scripts/garmin_sync.py --week
 수집한 정보를 `data/profile/runner_profile.md`에 저장한다.
 모든 항목을 채울 필요는 없다 — 사용자가 모르거나 없다고 하면 빈칸으로 남긴다.
 
-### Step 9: 히스토리 데이터 수집 & 스킬 그래프 생성
+### Step 8: 히스토리 데이터 수집 & 스킬 그래프 생성
 
 Garmin Connect에서 **최근 1년**의 러닝 데이터를 수집하고 분석한다.
 
-#### 9-1. 데이터 수집
+#### 8-1. 데이터 수집
 
 ```bash
 # 1년 전부터 오늘까지의 러닝 활동 조회
@@ -244,7 +235,7 @@ python scripts/garmin_sync.py --range <1년전 날짜> <오늘 날짜>
 > 데이터가 많으면 3~4개월 단위로 나눠서 조회한다.
 > API 에러 시 기간을 줄여서 재시도한다.
 
-#### 9-2. 분석 & 스킬 그래프 작성
+#### 8-2. 분석 & 스킬 그래프 작성
 
 수집된 데이터를 기반으로 `data/profile/skill_graph.example.md` 템플릿을 참조하여
 `data/profile/skill_graph.md`를 작성한다.
@@ -261,7 +252,7 @@ python scripts/garmin_sync.py --range <1년전 날짜> <오늘 날짜>
 
 > `runner_profile.md`의 사용자 목표와 대조하여 권장사항을 작성한다.
 
-#### 9-3. 결과 전달
+#### 8-3. 결과 전달
 
 텔레그램으로 스킬 그래프의 핵심 요약을 사용자에게 전달한다:
 - 전체 분석 기간 & 총 활동 요약
@@ -269,7 +260,7 @@ python scripts/garmin_sync.py --range <1년전 날짜> <오늘 날짜>
 - 강점 & 개선 영역 Top 3
 - 목표 기록 달성을 위한 핵심 권장사항
 
-### Step 10: Coach Agent 확인
+### Step 9: Coach Agent 확인
 
 `.claude/agents/coach-agent.md` 파일 존재 확인.
 
@@ -277,7 +268,7 @@ python scripts/garmin_sync.py --range <1년전 날짜> <오늘 날짜>
 @coach-agent 현재 사용 가능한 데이터 확인해줘
 ```
 
-### Step 11: 완료 안내
+### Step 10: 완료 안내
 
 텔레그램으로 사용자에게 아래 내용을 전달:
 
