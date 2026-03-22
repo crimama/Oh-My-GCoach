@@ -250,22 +250,28 @@ Telegram 플러그인 설치:
 
 #### 6-3. 채널 모드로 재시작
 
-현재 세션을 종료하고, `--channels` 플래그로 재시작해야 한다.
+토큰 등록 후, 현재 세션을 종료하고 `--channels` 플래그로 재시작해야 한다.
+**이 단계가 없으면 텔레그램 메시지를 수신할 수 없다.**
 
-`[ASK USER]` 아래 안내를 전달:
+`[ASK USER]` 아래 안내를 **그대로** 전달한다:
 
 ```
-텔레그램 연결을 위해 Claude Code를 재시작해야 합니다.
-현재 세션을 종료한 뒤, 아래 명령으로 다시 시작해주세요:
+✅ 텔레그램 봇 토큰이 등록되었습니다!
 
-cd Oh-My-GCoach
-claude --channels plugin:telegram@claude-plugins-official
+이제 텔레그램 채널을 연결하기 위해 Claude Code를 재시작해야 합니다.
+아래 두 단계를 따라해주세요:
 
-재시작 후 "SETUP.md 설치 이어서 해줘"라고 입력하면 됩니다.
+1. 현재 세션을 종료합니다 (Ctrl+C 또는 /exit)
+2. 터미널에서 아래 명령어를 실행합니다:
+
+   cd Oh-My-GCoach
+   claude --channels plugin:telegram@claude-plugins-official
+
+재시작 후 "설치 이어서 해줘"라고 입력하면 나머지 설정을 자동으로 진행합니다.
 ```
 
-> **중요**: `--channels` 플래그 없이 시작하면 텔레그램 메시지를 수신할 수 없다.
 > 재시작 후 이 프로토콜의 Step 6-4부터 이어서 진행한다.
+> 사용자가 "설치 이어서 해줘" 또는 유사한 요청을 하면, Step 6-4로 점프한다.
 
 #### 6-4. 페어링
 
@@ -360,10 +366,9 @@ python scripts/garmin_sync.py --range <1년전 날짜> <오늘 날짜>
 텔레그램으로 사용자에게 아래 내용을 전달:
 
 ```
-설치 완료! 이제 이 채팅에서 메시지를 보내면 AI 코치가 응답합니다.
+🎉 설치 완료! 프로필과 지난 1년간의 훈련 분석이 완료되었습니다.
 
-프로필과 지난 1년간의 훈련 분석이 완료되었습니다.
-앞으로의 코칭은 이 데이터를 기반으로 제공됩니다.
+앞으로 이 채팅에서 메시지를 보내면 AI 코치가 응답합니다.
 
 사용 예시:
   "오늘 훈련 분석해줘"
@@ -372,6 +377,22 @@ python scripts/garmin_sync.py --range <1년전 날짜> <오늘 날짜>
   "다음 대회까지 훈련 계획 짜줘"
 
 자연어로 자유롭게 질문하세요!
+```
+
+또한 `[ASK USER]` 아래 안내를 **Claude Code 세션에서** 전달한다:
+
+```
+설치가 모두 완료되었습니다!
+
+앞으로 코칭 세션을 시작할 때는 아래 명령으로 실행하세요:
+
+  cd Oh-My-GCoach
+  claude --channels plugin:telegram@claude-plugins-official
+
+이 명령으로 시작해야 텔레그램 메시지를 수신할 수 있습니다.
+
+항상 켜두려면:
+  tmux new-session -d -s gcoach "cd Oh-My-GCoach && claude --channels plugin:telegram@claude-plugins-official"
 ```
 
 ---
