@@ -59,8 +59,30 @@ These are immutable, Garmin-data-based fundamentals. Coaching *strategy* is dyna
 
 ## Telegram Integration
 
-This project uses Claude Code's Telegram MCP plugin to deliver coaching insights.
-The coach-agent analyzes Garmin data and sends results via `mcp__plugin_telegram_telegram__reply`.
+This project uses `claude --channels` to connect with Telegram.
+
+### How It Works
+
+```
+claude --channels plugin:telegram@claude-plugins-official
+```
+
+- Claude Code starts with the Telegram plugin as a channel
+- Plugin polls the Telegram Bot API for incoming messages
+- Messages arrive as `<channel source="telegram">` tags in the session
+- Claude processes the message and replies via `mcp__plugin_telegram_telegram__reply`
+- Channel is only active while the session is running
+
+### Key Files
+
+- `~/.claude/channels/telegram/.env` — Bot token (`TELEGRAM_BOT_TOKEN=...`)
+- `~/.claude/channels/telegram/access.json` — Sender allowlist
+
+### Access Control
+
+- `/telegram:access pair <code>` — Approve a pairing code
+- `/telegram:access policy allowlist` — Only paired users can send messages
+- `/telegram:access list` — Show approved senders
 
 ## Setup
 
