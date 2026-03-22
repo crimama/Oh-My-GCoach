@@ -64,8 +64,20 @@ mcp__plugin_telegram_telegram__reply
   - 설치: `npm install -g @anthropic-ai/claude-code`
   - 업데이트: `npm update -g @anthropic-ai/claude-code`
   - `--channels` 기능은 **v2.1.80+** 이상 필요
-- [ ] **Bun 설치됨** — Telegram 플러그인 실행에 필요 ([설치](https://bun.sh))
+- [ ] **Telegram 플러그인 설치됨** — 아래 방법으로 설치
 - [ ] **Telegram Bot 토큰** — 아래 방법으로 생성
+
+### Telegram 플러그인 설치
+
+Claude Code에서 아래 명령을 실행합니다:
+
+```
+/plugin marketplace update claude-plugins-official
+/plugin install telegram@claude-plugins-official
+/reload-plugins
+```
+
+> Bun이 없다면 Claude Code가 자동으로 설치합니다.
 
 ### Telegram Bot 만드는 법
 
@@ -159,8 +171,8 @@ tmux attach -t gcoach
 | 활동이 안 보임 | 오늘 러닝이 없으면 정상 |
 | 텔레그램 봇 무응답 | `claude --channels` 세션이 실행 중인지 확인. 봇 토큰 확인 |
 | 텔레그램 페어링 안 됨 | `--channels` 플래그 없이 실행 중일 수 있음. 재시작 필요 |
-| Plugin not found | `/plugin marketplace update claude-plugins-official` 실행 |
-| Bun 미설치 | `curl -fsSL https://bun.sh/install \| bash` |
+| Plugin not found | 체크리스트의 "Telegram 플러그인 설치" 항목 참조 |
+| Bun 미설치 | Claude Code가 자동 설치. 수동 설치: `curl -fsSL https://bun.sh/install \| bash` |
 
 ---
 
@@ -240,20 +252,24 @@ python scripts/garmin_sync.py --week
 
 이 시스템은 `claude --channels`를 통해 텔레그램과 연결된다.
 
-#### 6-1. 사전 확인
+#### 6-1. Bun 설치 확인
 
-Bun 설치 확인:
+Telegram 플러그인 실행에 Bun이 필요하다. 설치 여부를 확인하고, 없으면 자동 설치한다.
+
 ```bash
 bun --version
 ```
-- **Fail**: `curl -fsSL https://bun.sh/install | bash` 설치 안내
 
-Telegram 플러그인 설치:
+- **Pass**: 버전 출력되면 다음 단계로
+- **Fail**: 아래 명령으로 자동 설치
+
+```bash
+curl -fsSL https://bun.sh/install | bash
 ```
-/plugin marketplace update claude-plugins-official
-/plugin install telegram@claude-plugins-official
-/reload-plugins
-```
+
+설치 후 `bun --version`으로 재확인한다.
+
+> 사용자에게 별도 안내 없이 자동 수행한다.
 
 #### 6-2. 봇 토큰 등록
 
