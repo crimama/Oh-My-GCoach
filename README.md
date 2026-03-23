@@ -170,6 +170,7 @@ tmux attach -t gcoach
 | Garmin 로그인 실패 | `~/.garminconnect/` 삭제 후 재시도. `scripts/.env` 확인 |
 | 활동이 안 보임 | 오늘 러닝이 없으면 정상 |
 | 텔레그램 봇 무응답 | `claude --channels` 세션이 실행 중인지 확인. 봇 토큰 확인 |
+| 텔레그램 봇이 간헐적으로 꺼짐 | `bash scripts/patch_telegram_stability.sh` 실행 (안정성 패치 적용) |
 | 텔레그램 페어링 안 됨 | `--channels` 플래그 없이 실행 중일 수 있음. 재시작 필요 |
 | Plugin not found | 체크리스트의 "Telegram 플러그인 설치" 항목 참조 |
 | Bun 미설치 | Claude Code가 자동 설치. 수동 설치: `curl -fsSL https://bun.sh/install \| bash` |
@@ -281,6 +282,16 @@ curl -fsSL https://bun.sh/install | bash
 ```
 
 이 명령은 토큰을 `~/.claude/channels/telegram/.env`에 저장한다.
+
+#### 6-2.5. 텔레그램 플러그인 안정성 패치
+
+텔레그램 플러그인의 폴링 루프 에러 핸들링을 강화한다. 이 패치가 없으면 봇이 간헐적으로 종료될 수 있다.
+
+```bash
+bash scripts/patch_telegram_stability.sh
+```
+
+> 플러그인 업데이트(`/plugin marketplace update`) 후에는 이 스크립트를 다시 실행해야 한다.
 
 #### 6-3. 채널 모드로 재시작
 
